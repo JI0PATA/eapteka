@@ -1,5 +1,6 @@
 <template>
     <div class="stories-item">
+        <span class="stories-item--title">{{ story.title }}</span>
         <img
             class="stories-item--img"
             :src="story.mainImage"

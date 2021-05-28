@@ -7,13 +7,14 @@
                 :key="index" />
         <div class="stories-item--empty"></div>
 
-        <zoom-center-transition>
+        <slide-y-down-transition>
             <StoriesPopup
                     @closeStory="closeStory"
                     :story="activeStory"
                     v-if="isOpenStory"
             />
-        </zoom-center-transition>
+        </slide-y-down-transition>
+
     </div>
 </template>
 
@@ -26,9 +27,10 @@ export default {
     data: () => ({
         isOpenStory: false,
         activeStory: null,
+        animation: "zoom-center-transition",
         stories: [
             {
-                title: "Story 1",
+                title: "Пройдите тест что бы получить индивидуальный список препаратов",
                 mainImage: 'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                 images: [
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
@@ -38,7 +40,7 @@ export default {
                 ]
             },
             {
-                title: "Story 2",
+                title: "Дешево не значит плохо",
                 mainImage: 'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                 images: [
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
@@ -48,7 +50,7 @@ export default {
                 ]
             },
             {
-                title: "Story 3",
+                title: 'Какие бывают качества',
                 mainImage: 'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
                 images: [
                     'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
@@ -66,7 +68,27 @@ export default {
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                     'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg'
                 ]
-            }
+            },
+            {
+                title: "Пройдите тест что бы получить индивидуальный список препаратов",
+                mainImage: 'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
+                images: [
+                    'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
+                    'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
+                    'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
+                    'https://auto-desk.pro/wp-content/uploads/head.jpg'
+                ]
+            },
+            {
+                title: "Пройдите тест что бы получить индивидуальный список препаратов",
+                mainImage: 'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
+                images: [
+                    'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
+                    'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
+                    'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
+                    'https://auto-desk.pro/wp-content/uploads/head.jpg'
+                ]
+            },
         ]
     }),
     components: {
@@ -75,10 +97,12 @@ export default {
     },
     methods: {
         openStory(story) {
+            this.animation = "zoom-center-transition"
             this.activeStory = story
             this.isOpenStory = true
         },
         closeStory() {
+            this.animation = "slide-y-down-transition"
             this.activeStory = null
             this.isOpenStory = false
         }

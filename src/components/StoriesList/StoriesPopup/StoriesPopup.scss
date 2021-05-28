@@ -12,6 +12,21 @@
     align-items: center;
     justify-content: center;
 
+    &--controls {
+      width: 20%;
+      height: 100%;
+      background: #000;
+      z-index: 15;
+      position: absolute;
+      opacity: 0;
+      &-left {
+        left: 0;
+      }
+      &-right {
+        right: 0;
+      }
+    }
+
     &--group {
       width: 100%;
       height: 100%;

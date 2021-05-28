@@ -1,3 +1,12 @@
 module.exports = {
-  productionSourceMap: false
+  productionSourceMap: false,
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `
+          @import "@/assets/css/_vars.scss";
+        `
+      }
+    }
+  }
 };

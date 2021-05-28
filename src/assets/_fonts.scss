@@ -1,11 +1,24 @@
 @font-face {
   font-family: "SB";
-  src: url("./fonts/SB Sans Display.otf");
+  src: url("fonts/SB Sans Display.otf");
   font-weight: normal;
 }
 
 @font-face {
   font-family: "SB";
-  src: url("./fonts/SB Sans Display Semibold.otf");
+  src: url("fonts/SB Sans Display Semibold.otf");
   font-weight: bold;
 }
+
+@font-face {
+  font-family: "SBT";
+  src: url("fonts/SB Sans Text.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "SBT";
+  src: url("fonts/SB Sans Text Semibold.ttf");
+  font-weight: bold;
+}
+

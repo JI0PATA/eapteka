@@ -14,6 +14,12 @@
                 <div class="stories-popup--progress-item--bar" :class="{'animate': index === currentSlide, 'end': index < currentSlide}"></div>
             </div>
         </div>
+        <button class="stories-popup--controls stories-popup--controls-left"
+                @click="swipePrev()"
+        ></button>
+        <button class="stories-popup--controls stories-popup--controls-right"
+                @click="swipeNext()"
+        ></button>
         <fade-transition
                 class="stories-popup--group"
                 mode="out-in"
@@ -36,7 +42,8 @@ export default {
     ],
     data: () => ({
         currentSlide: 0,
-        intervalTimer: 5000
+        intervalTimer: 5000,
+        animation: "fade-transition"
     }),
     methods: {
         changeActiveBar(currentSlide) {
