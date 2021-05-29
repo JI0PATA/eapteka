@@ -30,7 +30,7 @@ export default {
         animation: "zoom-center-transition",
         stories: [
             {
-                title: "Пройдите тест что бы получить индивидуальный список препаратов",
+                title: "Пройдите тест, чтобы получить индивидуальный список рекомендаций",
                 mainImage: 'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                 images: [
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
@@ -42,7 +42,7 @@ export default {
                 ]
             },
             {
-                title: "Дешево не значит плохо",
+                title: "Дешево - не значит плохо",
                 mainImage: 'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                 images: [
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
@@ -72,7 +72,7 @@ export default {
                 ]
             },
             {
-                title: "Пройдите тест что бы получить индивидуальный список препаратов",
+                title: "Пройдите тест, чтобы получить индивидуальный список рекомендаций",
                 mainImage: 'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                 images: [
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
@@ -82,7 +82,7 @@ export default {
                 ]
             },
             {
-                title: "Пройдите тест что бы получить индивидуальный список препаратов",
+                title: "Пройдите тест, чтобы получить индивидуальный список рекомендаций",
                 mainImage: 'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                 images: [
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
