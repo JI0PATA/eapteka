@@ -1,5 +1,6 @@
 <template>
     <div class="stories-popup"
+         ref="storyPopup"
          v-touch:swipe.left="swipeNext"
          v-touch:swipe.right="swipePrev"
          v-touch:swipe.bottom="closeStory"
@@ -74,6 +75,40 @@ export default {
     created() {
         this.changeActiveBar(0)
         this.startInterval()
+    },
+    mounted() {
+        let touchStartHandler,
+            touchMoveHandler,
+            touchPoint;
+        // Only needed for touch events on chrome.
+        if ((window.chrome || navigator.userAgent.match("CriOS"))
+            && "ontouchstart" in document.documentElement) {
+            touchStartHandler = function() {
+                // Only need to handle single-touch cases
+                touchPoint = event.touches.length === 1 ? event.touches[0].clientY : null;
+            };
+            touchMoveHandler = function(event) {
+                let newTouchPoint;
+                // Only need to handle single-touch cases
+                if (event.touches.length !== 1) {
+                    touchPoint = null;
+
+                    return;
+                }
+                // We only need to defaultPrevent when scrolling up
+                newTouchPoint = event.touches[0].clientY;
+                if (newTouchPoint > touchPoint) {
+                    event.preventDefault();
+                }
+                touchPoint = newTouchPoint;
+            };
+            this.$refs.storyPopup.addEventListener("touchstart", touchStartHandler, {
+                passive: false
+            });
+            this.$refs.storyPopup.addEventListener("touchmove", touchMoveHandler, {
+                passive: false
+            });
+        }
     }
 }
 </script>
