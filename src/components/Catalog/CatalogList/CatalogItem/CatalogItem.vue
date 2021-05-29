@@ -1,5 +1,5 @@
 <template>
-    <div class="catalog-item">
+    <div class="catalog-item" @click="openCatalogCard(product)">
         <div class="catalog-item--img-container">
             <img :src="url + '/pics/' + product.image_id + '.webp'" :alt="product.name"
                  class="catalog-item--img"
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
+
 export default {
     props: [
         'product'
@@ -30,6 +32,9 @@ export default {
         url() {
             return process.env.VUE_APP_URL
         }
+    },
+    methods: {
+        ...mapActions(['openCatalogCard']),
     }
 }
 </script>

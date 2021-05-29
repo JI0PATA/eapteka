@@ -8,7 +8,8 @@ export default new Vuex.Store({
     products: {
       recommendations: [],
       discounts: []
-    }
+    },
+    isOpenCatalogCard: null
   },
   mutations: {
     setRecommendationsProducts(state, products) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     setDiscountsProducts(state, products) {
       state.products.discounts = products
+    },
+    setCatalogCard(state, product) {
+      state.isOpenCatalogCard = product
     }
   },
   actions: {
@@ -24,11 +28,19 @@ export default new Vuex.Store({
     },
     addDiscountsProducts({ commit }, products) {
       commit('setDiscountsProducts', products)
+    },
+    openCatalogCard({ commit }, product) {
+      commit('setCatalogCard', product)
+    },
+    closeCatalogCard({ commit }) {
+      console.log(1);
+      commit('setCatalogCard', null)
     }
   },
   getters: {
     recommendationsProducts: (s) => s.products.recommendations,
-    discountsProducts: (s) => s.products.discounts
+    discountsProducts: (s) => s.products.discounts,
+    isOpenCatalogCard: (s) => s.isOpenCatalogCard
   },
   modules: {
   }

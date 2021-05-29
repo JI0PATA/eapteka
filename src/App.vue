@@ -6,6 +6,9 @@
     <vue-page-transition name="fade">
       <router-view />
     </vue-page-transition>
+    <slide-y-down-transition>
+      <CatalogCard v-if="isOpenCatalogCard" />
+    </slide-y-down-transition>
   </div>
 </template>
 
@@ -31,9 +34,10 @@
 </script>
 
 <script>
-import Preloader from "./components/Preloader/Preloader";
-import axios from "axios";
-import { mapActions } from "vuex";
+import Preloader from "./components/Preloader/Preloader"
+import axios from "axios"
+import { mapActions, mapGetters } from "vuex"
+import CatalogCard from "@/components/Catalog/CatalogCard/CatalogCard";
 
 export default {
   name: "App",
@@ -41,10 +45,14 @@ export default {
     preloader: true
   }),
   components: {
-    Preloader
+    Preloader,
+    CatalogCard
   },
   methods: {
     ...mapActions(['addRecommendationsProducts', 'addDiscountsProducts'])
+  },
+  computed: {
+    ...mapGetters(['isOpenCatalogCard'])
   },
   created() {
       axios.get(`${process.env.VUE_APP_API}/products`)
