@@ -8,7 +8,7 @@
         <div class="stories-item--empty"></div>
 
         <slide-y-down-transition>
-            <StoriesPopup
+            <component :is="activeStory.component"
                     @closeStory="closeStory"
                     :story="activeStory"
                     v-if="isOpenStory"
@@ -21,6 +21,7 @@
 <script>
 import StoriesItem from './StoriesItem/StoriesItem'
 import StoriesPopup from './StoriesPopup/StoriesPopup'
+import StoriesQuiz from "./StoriesQuiz/StoriesQuiz";
 
 export default {
     name: "StoriesList",
@@ -30,16 +31,81 @@ export default {
         animation: "zoom-center-transition",
         stories: [
             {
-                title: "Пройдите тест, чтобы получить индивидуальный список рекомендаций",
-                mainImage: 'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
-                images: [
-                    'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
-                    'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
-                    'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
-                    'https://auto-desk.pro/wp-content/uploads/head.jpg',
-                    'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
-                    'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
-                ]
+                title: "Пройдите двухминутный тест и получите полезные рекомендации ",
+                mainImage: require('../../assets/img/story-quiz.png'),
+                styles: {
+                    backgroundColor: "#8168F0"
+                },
+                startSlide: {
+                    styles: {
+                        backgroundImage: `url('${require('../../assets/img/start-quiz.png')}')`,
+                    },
+                    giftCaption: 'А так же ватные палочки в подарок!'
+                },
+                endSlide: {
+                    styles: {
+                        backgroundImage: `url('${require('../../assets/img/quiz-5.png')}')`
+                    }
+                },
+                gift: {
+                    image: require('../../assets/img/gift.png'),
+                    name: 'Bella Cotton Ватные палочки E Vita, 100 шт.'
+                },
+                questions: [
+                    {
+                        question: `Кому вы обычно покупаете препарат?`,
+                        answers: [
+                            'Себе',
+                            'Другому взрослому',
+                            'Ребенку'
+                        ],
+                        styles: {
+                            backgroundImage: `url('${require('../../assets/img/quiz-1.png')}')`
+                        }
+                    },
+                    {
+                        question: `В каком колличестве вы предпочитаете покупать лекарства?`,
+                        answers: [
+                            'На весь курс лечения',
+                            'По одной упаковке'
+                        ],
+                        styles: {
+                            backgroundImage: `url('${require('../../assets/img/quiz-2.png')}')`
+                        }
+                    },
+                    {
+                        question: `Как вы относитесь к аналогам лекарств?`,
+                        answers: [
+                            'Хорошо',
+                            'Плохо'
+                        ],
+                        styles: {
+                            backgroundImage: `url('${require('../../assets/img/quiz-3.png')}')`
+                        }
+                    },
+                    {
+                        question: `Знаете ли вы, чем отличается аналог лекарственного средства от «дженерика»?`,
+                        answers: [
+                            'Знаю',
+                            'Нет',
+                            'Расскажите подробнее'
+                        ],
+                        styles: {
+                            backgroundImage: `url('${require('../../assets/img/quiz-4.png')}')`
+                        }
+                    },
+                    {
+                        question: `Вспомните 3 последних посещения аптеки. Сколько времени вы проводили в очереди?`,
+                        answers: [
+                            'Менее 1 минуты',
+                            'Более 5 минут'
+                        ],
+                        styles: {
+                            backgroundImage: `url('${require('../../assets/img/quiz-5.png')}')`
+                        }
+                    },
+                ],
+                component: StoriesQuiz
             },
             {
                 title: "Дешево - не значит плохо",
@@ -49,7 +115,8 @@ export default {
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                     'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
                     'https://auto-desk.pro/wp-content/uploads/head.jpg'
-                ]
+                ],
+                component: StoriesPopup
             },
             {
                 title: 'Какие бывают качества',
@@ -59,7 +126,8 @@ export default {
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                     'https://auto-desk.pro/wp-content/uploads/head.jpg'
-                ]
+                ],
+                component: StoriesPopup
             },
             {
                 title: "Story 4",
@@ -69,7 +137,8 @@ export default {
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                     'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg'
-                ]
+                ],
+                component: StoriesPopup
             },
             {
                 title: "Пройдите тест, чтобы получить индивидуальный список рекомендаций",
@@ -79,7 +148,8 @@ export default {
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                     'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
                     'https://auto-desk.pro/wp-content/uploads/head.jpg'
-                ]
+                ],
+                component: StoriesPopup
             },
             {
                 title: "Пройдите тест, чтобы получить индивидуальный список рекомендаций",
@@ -89,13 +159,15 @@ export default {
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                     'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
                     'https://auto-desk.pro/wp-content/uploads/head.jpg'
-                ]
+                ],
+                component: StoriesPopup
             },
         ]
     }),
     components: {
         StoriesItem,
-        StoriesPopup
+        StoriesPopup,
+        StoriesQuiz
     },
     methods: {
         openStory(story) {

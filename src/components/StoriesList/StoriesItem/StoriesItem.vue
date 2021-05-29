@@ -1,5 +1,7 @@
 <template>
-    <div class="stories-item">
+    <div class="stories-item"
+         :style="story.styles"
+    >
         <span class="stories-item--title">{{ story.title }}</span>
         <img
             class="stories-item--img"
@@ -13,7 +15,7 @@ export default {
     props: [
         'story'
     ],
-    name: "StoriesItem"
+    name: "StoriesItem",
 }
 </script>
 
