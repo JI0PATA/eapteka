@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import axios from "axios"
 import StoriesList from "@/components/StoriesList/StoriesList"
 import Header from "@/components/Header/Header"
 import Preloader from "@/components/Preloader/Preloader"
@@ -37,48 +38,7 @@ export default {
   name: 'Home',
   data: () => ({
     preloader: true, // TODO: на проде активировать
-    products: [
-      {
-        name: "Лекарство 1",
-        sku: 44,
-        price: {
-          actual: 977,
-          stroke: 1200
-        }
-      },
-      {
-        name: "Лекарство 1",
-        sku: 44,
-        price: {
-          actual: 977,
-          stroke: 1200
-        }
-      },
-      {
-        name: "Лекарство 1",
-        sku: 44,
-        price: {
-          actual: 977,
-          stroke: 1200
-        }
-      },
-      {
-        name: "Лекарство 1",
-        sku: 44,
-        price: {
-          actual: 977,
-          stroke: 1200
-        }
-      },
-      {
-        name: "Лекарство 1",
-        sku: 44,
-        price: {
-          actual: 977,
-          stroke: 1200
-        }
-      }
-    ]
+    products: []
   }),
   components: {
     Header,
@@ -95,21 +55,14 @@ export default {
     setTimeout(() => {
       this.preloader = false
     }, 1500)
+
+    axios.get(`${process.env.VUE_APP_API}/products`)
+      .then(res => {
+        console.log(res.data);
+      })
   },
   mounted() {
-    /*document.addEventListener("visibilitychange", () => {
-      document.querySelector('.preloader').style.display = "flex"
-      // if (this.$refs.preloader.$el !== undefined) {
-        // this.$refs.preloader.$el.style.display = document.visibilityState === "hidden" ? "flex" : "none";
-      // }
 
-      if (document.visibilityState === "hidden") {
-        document.title = "Hidden"
-        // document.documentElement.style.display = "none"
-      }
-      else
-        document.title = "Visible"
-    }, false)*/
   }
 }
 </script>

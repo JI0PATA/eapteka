@@ -29,13 +29,24 @@
       background: $buttonBg;
       border-radius: 40px;
       border: transparent;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      padding: 9px 15px;
+      padding: 9px;
       font-size: 15px;
-      &-icon {
+      &-button {
         margin-left: 9px;
-        color: $purple;
+        color: #fff;
+        background: $purple;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: transparent;
+      }
+      &-icon {
+        width: 12px;
       }
     }
     &--price {

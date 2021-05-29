@@ -7,11 +7,13 @@
         </div>
         <h4 class="catalog-item--title">{{ product.name }}</h4>
         <div class="catalog-item--sku">{{ product.sku }} шт.</div>
-        <button class="catalog-item--add">
+        <div class="catalog-item--add">
             <span class="catalog-item--price-stroke" v-if="product.price.stroke">{{ product.price.stroke }}</span>
-            <span class="catalog-item--price-actual">{{ product.price.actual }}</span>
-            <img src="@/assets/img/icons/plus.svg" alt="Plus" class="catalog-item--add-icon">
-        </button>
+            <span class="catalog-item--price-actual">{{ product.price.actual }} ₽</span>
+            <button class="catalog-item--add-button">
+                <img src="@/assets/img/icons/plus-white.svg" alt="Plus" class="catalog-item--add-icon">
+            </button>
+        </div>
     </div>
 </template>
 
