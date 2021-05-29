@@ -1,6 +1,8 @@
 <template>
     <div class="groupProducts">
-        <GroupProductsHeader />
+        <GroupProductsHeader
+                title="Название вещества"
+        />
         <FilterLine />
         <CatalogFlex>
             <CatalogItem

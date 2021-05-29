@@ -2,8 +2,8 @@
     <div class="groupProducts-header">
         <BackPage />
         <div class="groupProducts-title-container">
-            <h2 class="groupProducts-title">Название вещества</h2>
-            <h3 class="groupProducts-subtitle">Дополнительное название</h3>
+            <h2 class="groupProducts-title">{{ title }}</h2>
+            <h3 class="groupProducts-subtitle" v-if="subtitle">{{ subtitle }}</h3>
         </div>
         <Search />
     </div>
@@ -14,6 +14,10 @@ import BackPage from "@/components/BackPage";
 import Search from "@/components/Search/Search";
 
 export default {
+    props: [
+        'title',
+        'subtitle'
+    ],
     name: "GroupProductsHeader",
     components: {
         BackPage,

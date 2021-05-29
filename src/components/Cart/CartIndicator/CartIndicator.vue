@@ -1,8 +1,8 @@
 <template>
-    <div class="CartIndicator" v-if="totalPrice !== 0">
+    <router-link :to="{ name: 'Cart' }" class="CartIndicator" v-if="totalPrice !== 0">
         <div class="CartIndicator--total">{{ totalPrice }} ₽</div>
         <div class="CartIndicator--time">15 минут</div>
-    </div>
+    </router-link>
 </template>
 
 <script>

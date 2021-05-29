@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import "@/assets/style.scss"
-import GroupProducts from "@/views/GroupProducts";
+import GroupProducts from "@/views/GroupProducts"
+import Cart from "@/views/Cart"
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ const routes = [
     path: '/groupProducts/:id',
     name: 'GroupProducts',
     component: GroupProducts
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
   }
 ]
 
