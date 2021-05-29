@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <fade-transition>
-      <Preloader v-if="preloader" />
+      <Preloader ref="preloader" v-show="preloader" />
     </fade-transition>
     <Header />
     <StoriesList />
@@ -95,6 +95,22 @@ export default {
     setTimeout(() => {
       this.preloader = false
     }, 1500)
+  },
+  mounted() {
+    document.addEventListener("visibilitychange", () => {
+      if (this.$refs.preloader.$el !== undefined) {
+        console.log(document.visibilityState)
+        console.log(this.$refs.preloader.$el.style.display);
+        setTimeout(() => {
+          this.$refs.preloader.$el.style.display = document.visibilityState === "hidden" ? "flex" : "none";
+        }, 500)
+      }
+
+      if (document.visibilityState === "hidden")
+        document.title = "Hidden"
+      else
+        document.title = "Visible"
+    })
   }
 }
 </script>

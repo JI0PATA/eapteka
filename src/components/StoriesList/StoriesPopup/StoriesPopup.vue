@@ -116,6 +116,8 @@ export default {
         this.startInterval()
     },
     mounted() {
+        this.$root.$el.style.overflow = "hidden"
+
         let touchStartHandler,
             touchMoveHandler,
             touchPoint;
@@ -150,6 +152,7 @@ export default {
         }
     },
     destroyed() {
+        this.$root.$el.style.overflow = "auto"
         this.isPauseInterval = true
     }
 }
