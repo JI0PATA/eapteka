@@ -4,6 +4,7 @@
             <img :src="url + '/pics/' + product.image_id + '.webp'" :alt="product.name"
                  class="catalog-item--img"
             >
+            <div class="catalog-item--count" v-if="issetInCart(product)">{{ issetInCart(product) }}</div>
         </div>
         <div class="catalog-item--rate">
             <img src="@/assets/img/icons/star.svg" alt="Star" class="catalog-item--rate-item" v-for="rate in 5">
