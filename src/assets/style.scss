@@ -8,6 +8,6 @@
   color: $text;
 }
 
-html {
-  overscroll-behavior: none;
+body {
+  overscroll-behavior-y: contain;
 }
