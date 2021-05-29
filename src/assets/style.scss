@@ -8,3 +8,15 @@
   color: $text;
   user-select: none;
 }
+
+@media screen and (min-width: 400px) {
+  html {
+    background: rgba(0, 0, 0, .8);
+  }
+  #app {
+    width: 400px;
+    margin: 0 auto;
+    height: 100vh;
+    background: #fff;
+  }
+}

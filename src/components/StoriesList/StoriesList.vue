@@ -36,7 +36,9 @@ export default {
                     'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
                     'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                     'https://cdnimg.rg.ru/img/content/187/13/91/iStock-1012400706_d_850_d_850.jpg',
-                    'https://auto-desk.pro/wp-content/uploads/head.jpg'
+                    'https://auto-desk.pro/wp-content/uploads/head.jpg',
+                    'https://i.pinimg.com/originals/dc/8a/c7/dc8ac79668d2a18d6065b0c42b7f539e.jpg',
+                    'https://blog.allo.ua/wp-content/uploads/Glavnaya-kartinka-15.jpg',
                 ]
             },
             {

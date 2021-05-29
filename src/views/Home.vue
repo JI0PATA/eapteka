@@ -97,20 +97,19 @@ export default {
     }, 1500)
   },
   mounted() {
-    document.addEventListener("visibilitychange", () => {
-      if (this.$refs.preloader.$el !== undefined) {
-        console.log(document.visibilityState)
-        console.log(this.$refs.preloader.$el.style.display);
-        setTimeout(() => {
-          this.$refs.preloader.$el.style.display = document.visibilityState === "hidden" ? "flex" : "none";
-        }, 500)
-      }
+    /*document.addEventListener("visibilitychange", () => {
+      document.querySelector('.preloader').style.display = "flex"
+      // if (this.$refs.preloader.$el !== undefined) {
+        // this.$refs.preloader.$el.style.display = document.visibilityState === "hidden" ? "flex" : "none";
+      // }
 
-      if (document.visibilityState === "hidden")
+      if (document.visibilityState === "hidden") {
         document.title = "Hidden"
+        // document.documentElement.style.display = "none"
+      }
       else
         document.title = "Visible"
-    })
+    }, false)*/
   }
 }
 </script>

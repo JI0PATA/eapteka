@@ -7,6 +7,9 @@
          v-touch:start="pauseStory"
          v-touch:end="playStory"
     >
+        <div class="stories-popup--close" @click="closeStory">
+            <span>&#x2715</span>
+        </div>
 
         <keep-alive>
             <fade-transition>
