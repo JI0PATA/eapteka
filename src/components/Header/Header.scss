@@ -31,7 +31,7 @@
       height: 100%;
       background: $buttonBg;
       border-radius: 11px;
-      padding: 15px 15px 15px 43px;
+      padding: 15px 85px 15px 43px;
       border: transparent;
 
       &:focus {
@@ -41,6 +41,22 @@
       &::-webkit-input-placeholder {
         opacity: .6;
       }
+    }
+  }
+  &--microphone {
+    &-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 57px;
+    }
+  }
+  &--camera {
+    &-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
     }
   }
 }

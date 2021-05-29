@@ -1,11 +1,22 @@
 <template>
   <div class="home">
-    <fade-transition>
-      <Preloader ref="preloader" v-show="preloader" />
-    </fade-transition>
+    <Address />
     <Header />
     <StoriesList />
 
+    <Catalog>
+      <CatalogHeader>
+        <CatalogTitle>Рекомендации</CatalogTitle>
+        <CatalogMore>Больше</CatalogMore>
+      </CatalogHeader>
+      <CatalogList>
+        <CatalogItem
+              v-for="(product, index) in recommendationsProducts"
+              :key="index"
+              :product="product"
+        />
+      </CatalogList>
+    </Catalog>
     <Catalog>
       <CatalogHeader>
         <CatalogTitle>Скидки</CatalogTitle>
@@ -13,9 +24,9 @@
       </CatalogHeader>
       <CatalogList>
         <CatalogItem
-              v-for="(product, index) in products"
-              :key="index"
-              :product="product"
+                v-for="(product, index) in discountsProducts"
+                :key="index"
+                :product="product"
         />
       </CatalogList>
     </Catalog>
@@ -32,18 +43,16 @@ import CatalogHeader from "@/components/Catalog/CatalogHeader/CatalogHeader"
 import CatalogTitle from "@/components/Catalog/CatalogTitle/CatalogTitle"
 import CatalogMore from "@/components/Catalog/CatalogMore/CatalogMore"
 import CatalogList from "@/components/Catalog/CatalogList/CatalogList"
-import CatalogItem from "@/components/Catalog/CatalogList/CatalogItem/CatalogItem";
+import CatalogItem from "@/components/Catalog/CatalogList/CatalogItem/CatalogItem"
+import Address from "@/components/Address/Address"
+import { mapActions, mapGetters } from "vuex"
 
 export default {
   name: 'Home',
-  data: () => ({
-    preloader: true, // TODO: на проде активировать
-    products: []
-  }),
   components: {
+    Address,
     Header,
     StoriesList,
-    Preloader,
     Catalog,
     CatalogHeader,
     CatalogTitle,
@@ -51,18 +60,19 @@ export default {
     CatalogList,
     CatalogItem
   },
+  computed: {
+    ...mapGetters(['recommendationsProducts', 'discountsProducts'])
+  },
+  methods: {
+    ...mapActions(['addRecommendationsProducts', 'addDiscountsProducts'])
+  },
   created() {
-    setTimeout(() => {
-      this.preloader = false
-    }, 1500)
-
     axios.get(`${process.env.VUE_APP_API}/products`)
       .then(res => {
-        console.log(res.data);
+        const products = res.data
+        this.addRecommendationsProducts(products.slice(0, 10))
+        this.addDiscountsProducts(products.slice(10, 20))
       })
-  },
-  mounted() {
-
   }
 }
 </script>

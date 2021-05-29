@@ -9,6 +9,10 @@
   user-select: none;
 }
 
+#app {
+  padding-bottom: 70px;
+}
+
 @media screen and (min-width: 400px) {
   html {
     background: rgba(0, 0, 0, .8);

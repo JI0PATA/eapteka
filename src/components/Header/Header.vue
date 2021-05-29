@@ -6,6 +6,8 @@
         <div class="header--search">
             <img src="@/assets/img/icons/search.svg" alt="Search" class="header--search-icon">
             <input type="text" placeholder="Искать в Еаптеке" class="header--search-input">
+            <img src="@/assets/img/icons/microphone.svg" alt="Microphone" class="header--microphone-icon">
+            <img src="@/assets/img/icons/camera.svg" alt="Camera" class="header--camera-icon">
         </div>
     </div>
 </template>

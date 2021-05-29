@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <fade-transition>
+      <Preloader ref="preloader" v-show="preloader" />
+    </fade-transition>
     <vue-page-transition name="fade">
       <router-view />
     </vue-page-transition>
@@ -28,12 +31,24 @@
 </script>
 
 <script>
+import Preloader from "./components/Preloader/Preloader";
+
 export default {
   name: "App",
+  data: () => ({
+    preloader: true
+  }),
+  components: {
+    Preloader
+  },
   mounted() {
     document.addEventListener('contextmenu', ev => {
       ev.preventDefault()
     })
+
+    setTimeout(() => {
+      this.preloader = false
+    }, 1500)
   }
 }
 </script>
