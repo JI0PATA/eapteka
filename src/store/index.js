@@ -33,7 +33,6 @@ export default new Vuex.Store({
       commit('setCatalogCard', product)
     },
     closeCatalogCard({ commit }) {
-      console.log(1);
       commit('setCatalogCard', null)
     }
   },

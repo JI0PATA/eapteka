@@ -11,8 +11,8 @@
         <h4 class="catalog-item--title">{{ product.name }}</h4>
         <div class="catalog-item--sku">{{ product.sku }} шт.</div>
         <div class="catalog-item--add">
-            <span class="catalog-item--price-stroke" v-if="product.price.stroke">{{ product.price.stroke }}</span>
-            <span class="catalog-item--price-actual">{{ product.price }} ₽</span>
+            <span class="catalog-item--price-stroke" v-if="product.price.old">{{ product.price.old }}</span>
+            <span class="catalog-item--price-actual">{{ product.price.new }} ₽</span>
             <button class="catalog-item--add-button">
                 <img src="@/assets/img/icons/plus-white.svg" alt="Plus" class="catalog-item--add-icon">
             </button>

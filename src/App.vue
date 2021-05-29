@@ -55,12 +55,30 @@ export default {
     ...mapGetters(['isOpenCatalogCard'])
   },
   created() {
-      axios.get(`${process.env.VUE_APP_API}/products`)
-            .then(res => {
-              const products = res.data
-              this.addRecommendationsProducts(products.slice(0, 10))
-              this.addDiscountsProducts(products.slice(10, 20))
-            })
+    function transformPrice(product) {
+      let price
+
+      if (Math.random() > 0.5)
+        price = {
+          old: (product.price + (Math.random() * 100)).toFixed(0),
+          new: product.price
+        }
+      else
+        price = {
+          new: product.price
+        }
+
+      return {
+        ...product,
+        price
+      }
+    }
+    axios.get(`${process.env.VUE_APP_API}/products`)
+        .then(res => {
+          const products = res.data
+          this.addRecommendationsProducts(products.slice(0, 10).map(transformPrice))
+          this.addDiscountsProducts(products.slice(10, 20).map(transformPrice))
+        })
   },
   mounted() {
     document.addEventListener('contextmenu', ev => {
