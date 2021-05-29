@@ -1,0 +1,19 @@
+.filter {
+  margin-top: 25px;
+  padding: 0 13px;
+  display: flex;
+  &--filter {
+    &-btn {
+      width: 35px;
+      height: 34px;
+      background: $buttonBg;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: transparent;
+      margin-left: auto;
+    }
+    &-icon {}
+  }
+}

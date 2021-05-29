@@ -32,6 +32,8 @@
 
 <script>
 import Preloader from "./components/Preloader/Preloader";
+import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -40,6 +42,17 @@ export default {
   }),
   components: {
     Preloader
+  },
+  methods: {
+    ...mapActions(['addRecommendationsProducts', 'addDiscountsProducts'])
+  },
+  created() {
+      axios.get(`${process.env.VUE_APP_API}/products`)
+            .then(res => {
+              const products = res.data
+              this.addRecommendationsProducts(products.slice(0, 10))
+              this.addDiscountsProducts(products.slice(10, 20))
+            })
   },
   mounted() {
     document.addEventListener('contextmenu', ev => {

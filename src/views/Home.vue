@@ -7,7 +7,7 @@
     <Catalog>
       <CatalogHeader>
         <CatalogTitle>Рекомендации</CatalogTitle>
-        <CatalogMore>Больше</CatalogMore>
+        <CatalogMore :link="{name: 'GroupProducts', params: { id: 1 }}">Больше</CatalogMore>
       </CatalogHeader>
       <CatalogList>
         <CatalogItem
@@ -20,7 +20,7 @@
     <Catalog>
       <CatalogHeader>
         <CatalogTitle>Скидки</CatalogTitle>
-        <CatalogMore>Больше</CatalogMore>
+        <CatalogMore :link="{name: 'GroupProducts', params: { id: 1 }}">Больше</CatalogMore>
       </CatalogHeader>
       <CatalogList>
         <CatalogItem
@@ -62,17 +62,6 @@ export default {
   },
   computed: {
     ...mapGetters(['recommendationsProducts', 'discountsProducts'])
-  },
-  methods: {
-    ...mapActions(['addRecommendationsProducts', 'addDiscountsProducts'])
-  },
-  created() {
-    axios.get(`${process.env.VUE_APP_API}/products`)
-      .then(res => {
-        const products = res.data
-        this.addRecommendationsProducts(products.slice(0, 10))
-        this.addDiscountsProducts(products.slice(10, 20))
-      })
   }
 }
 </script>

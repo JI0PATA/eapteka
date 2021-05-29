@@ -1,0 +1,19 @@
+.groupProducts {
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 13px 0;
+  }
+  &-title {
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: bold;
+    &-container {}
+  }
+  &-subtitle {
+    font-size: 13px;
+    line-height: 15px;
+    opacity: .5;
+  }
+}

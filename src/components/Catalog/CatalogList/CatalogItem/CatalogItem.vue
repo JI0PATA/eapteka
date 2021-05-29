@@ -5,6 +5,9 @@
                  class="catalog-item--img"
             >
         </div>
+        <div class="catalog-item--rate">
+            <img src="@/assets/img/icons/star.svg" alt="Star" class="catalog-item--rate-item" v-for="rate in 5">
+        </div>
         <h4 class="catalog-item--title">{{ product.name }}</h4>
         <div class="catalog-item--sku">{{ product.sku }} шт.</div>
         <div class="catalog-item--add">
