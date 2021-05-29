@@ -108,6 +108,90 @@
         font-size: 18px;
         font-weight: bold;
         margin-top: 5px;
+        &-blue {
+          color: $ocean;
+        }
+      }
+    }
+    &--comment {
+      margin: 16px 13px;
+      background: $buttonBg;
+      padding: 15px 13px;
+      border-radius: 14px;
+      &-title {
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 28px;
+      }
+      &-subtitle {
+        color: $gray;
+        margin-top: 5px;
+      }
+      &-description {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+      &-expert {
+        &-container {
+          display: flex;
+          align-items: center;
+          margin-top: 20px;
+        }
+        &-img {
+          &-container {}
+        }
+        &-info {
+          margin-left: 17px;
+        }
+        &-title {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        &-job {
+          font-size: 14px;
+          color: $gray;
+          margin-top: 2px;
+        }
+      }
+      &-btn {
+        margin-top: 20px;
+        width: 100%;
+        color: #000;
+        border: transparent;
+        background: #fff;
+        padding: 15px;
+        border-radius: 48px;
+        font-weight: bold;
+      }
+    }
+    &--faq {
+      margin-top: 15px;
+      padding: 0 13px;
+      &-title {
+        font-size: 22px;
+        font-weight: bold;
+      }
+      &-list {
+        margin-top: 15px;
+      }
+      &-item {
+        display: flex;
+        align-items: flex-start;
+        font-weight: bold;
+        margin-bottom: 10px;
+        &-plus {
+          width: 22px;
+          height: 22px;
+          background: $buttonBg;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {}
+        }
+        &-title {
+          margin-left: 13px;
+        }
       }
     }
   }
