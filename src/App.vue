@@ -7,7 +7,14 @@
 </template>
 
 <script>
-
+export default {
+  name: "App",
+  mounted() {
+    document.addEventListener('contextmenu', ev => {
+      ev.preventDefault()
+    })
+  }
+}
 </script>
 
 <style lang="scss">

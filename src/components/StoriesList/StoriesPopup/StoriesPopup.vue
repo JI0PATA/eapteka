@@ -4,17 +4,26 @@
          v-touch:swipe.left="swipeNext"
          v-touch:swipe.right="swipePrev"
          v-touch:swipe.bottom="closeStory"
+         v-touch:start="pauseStory"
+         v-touch:end="playStory"
     >
 
-        <div class="stories-popup--progress"
-             :style="{'grid-template-columns': `repeat(${story.images.length}, 1fr)`}"
-        >
-            <div class="stories-popup--progress-item"
-                 :key="index"
-                 v-for="(image, index) in story.images">
-                <div class="stories-popup--progress-item--bar" :class="{'animate': index === currentSlide, 'end': index < currentSlide}"></div>
-            </div>
-        </div>
+        <keep-alive>
+            <fade-transition>
+                <div class="stories-popup--progress"
+                     v-show="isShowProgressBar"
+                     :style="{'grid-template-columns': `repeat(${story.images.length}, 1fr)`}"
+                >
+                    <div class="stories-popup--progress-item"
+                         :key="index"
+                         v-for="(image, index) in story.images">
+                        <div class="stories-popup--progress-item--bar"
+                             :class="{'end': index < currentSlide}"
+                             :style="{width: `calc(${calcWidthBar(index)}%)`}"></div>
+                    </div>
+                </div>
+            </fade-transition>
+        </keep-alive>
         <button class="stories-popup--controls stories-popup--controls-left"
                 @click="swipePrev()"
         ></button>
@@ -44,32 +53,62 @@ export default {
     data: () => ({
         currentSlide: 0,
         intervalTimer: 5000,
-        animation: "fade-transition"
+        animation: "fade-transition",
+        interval: 0,
+        isPauseInterval: false,
+        isShowProgressBar: true
     }),
     methods: {
+        calcWidthBar(index) {
+            return this.currentSlide === index ? this.interval / (this.intervalTimer / 100) : 0
+        },
+        clearInterval() {
+            this.interval = 0
+        },
         changeActiveBar(currentSlide) {
+            if (currentSlide >= this.story.images.length) {
+                return this.closeStory()
+            }
+
+            this.performanceStart = performance.now()
             this.currentSlide = currentSlide
+            this.clearInterval()
             this.startInterval()
         },
         swipeNext() {
             if (this.currentSlide + 1 >= this.story.images.length) this.closeStory()
-            clearInterval(this.interval)
+            this.clearInterval()
             this.changeActiveBar(this.currentSlide + 1)
         },
         swipePrev() {
-            clearInterval(this.interval)
+            this.clearInterval()
             this.changeActiveBar(this.currentSlide - 1 < 0 ? 0 : this.currentSlide - 1)
         },
+        pauseStory() {
+            this.timeoutHiddenProgressBar = setTimeout(() => {
+                this.isShowProgressBar = false
+            }, 500)
+            this.isPauseInterval = true
+        },
+        playStory() {
+            this.isShowProgressBar = true
+            clearTimeout(this.timeoutHiddenProgressBar)
+            this.performanceStart = performance.now() - this.interval
+            this.isPauseInterval = false
+            this.startInterval()
+        },
         closeStory() {
-            clearInterval(this.interval)
+            this.clearInterval()
             return this.$emit('closeStory')
         },
         startInterval() {
-            clearInterval(this.interval)
-            this.interval = setInterval(() => {
-                this.changeActiveBar(this.currentSlide + 1)
-                if (this.currentSlide >= this.story.images.length) this.closeStory()
-            }, this.intervalTimer)
+            if (this.isPauseInterval) return;
+            requestAnimationFrame(() => {
+                if (this.interval >= this.intervalTimer) this.changeActiveBar(this.currentSlide + 1)
+
+                this.interval = performance.now() - this.performanceStart
+                this.startInterval()
+            })
         }
     },
     created() {
@@ -109,6 +148,9 @@ export default {
                 passive: false
             });
         }
+    },
+    destroyed() {
+        this.isPauseInterval = true
     }
 }
 </script>
