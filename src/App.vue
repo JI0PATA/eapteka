@@ -9,6 +9,9 @@
     <slide-y-down-transition>
       <CatalogCard v-if="isOpenCatalogCard" />
     </slide-y-down-transition>
+    <fade-transition>
+      <CartIndicator />
+    </fade-transition>
   </div>
 </template>
 
@@ -38,6 +41,7 @@ import Preloader from "./components/Preloader/Preloader"
 import axios from "axios"
 import { mapActions, mapGetters } from "vuex"
 import CatalogCard from "@/components/Catalog/CatalogCard/CatalogCard";
+import CartIndicator from "@/components/Cart/CartIndicator/CartIndicator";
 
 export default {
   name: "App",
@@ -46,7 +50,8 @@ export default {
   }),
   components: {
     Preloader,
-    CatalogCard
+    CatalogCard,
+    CartIndicator
   },
   methods: {
     ...mapActions(['addRecommendationsProducts', 'addDiscountsProducts'])

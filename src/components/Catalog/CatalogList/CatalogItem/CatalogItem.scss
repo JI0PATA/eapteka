@@ -52,6 +52,17 @@
       padding: 9px;
       font-size: 15px;
       margin-top: auto;
+
+      &-inCart {
+        background: $purple;
+        .catalog-item--price-actual {
+          color: #fff;
+        }
+        .catalog-item--add-button {
+          background: #fff;
+        }
+      }
+
       &-button {
         margin-left: 9px;
         color: #fff;
@@ -67,6 +78,10 @@
       &-icon {
         width: 12px;
       }
+    }
+    &--remove-button {
+      margin-left: 0;
+      margin-right: 5px;
     }
     &--price {
       &-stroke {
