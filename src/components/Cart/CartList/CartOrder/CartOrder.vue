@@ -15,7 +15,7 @@
         <div class="CartOrder--line"></div>
         <div class="CartOrder--subtitle">
             <span>Товары с учётом скидки</span>
-            <span>1240 ₽</span>
+            <span>{{ totalPrice }} ₽</span>
         </div>
         <div class="CartOrder--subtitle">
             <span>Доставка за 15 минут</span>
@@ -23,15 +23,26 @@
         </div>
         <div class="CartOrder--subtitle CartOrder--subtitle-black">
             <span>К оплате</span>
-            <span>1240 ₽</span>
+            <span>{{ totalPrice }} ₽</span>
         </div>
         <button class="CartOrder--btn">Заказать</button>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 export default {
-    name: "CartOrder"
+    name: "CartOrder",
+    computed: {
+        ...mapGetters(['cart']),
+        totalPrice() {
+            return this.cart.reduce((acc, product) => {
+                acc += Number(product.price.new)
+                return acc
+            }, 0)
+        }
+    }
 }
 </script>
 

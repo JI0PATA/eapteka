@@ -3,10 +3,11 @@
         <GroupProductsHeader
                 title="Корзина"
         />
-        <CartList />
+        <CartList v-if="cart.length" />
+        <h2 class="Cart--empty-title" v-else>Ваша корзина пока пуста</h2>
         <Catalog>
             <CatalogHeader>
-                <CatalogTitle>Ничего не забыли</CatalogTitle>
+                <CatalogTitle>Ничего не забыли?</CatalogTitle>
             </CatalogHeader>
             <CatalogList>
                 <CatalogItem
@@ -16,7 +17,7 @@
                 />
             </CatalogList>
         </Catalog>
-        <CartOrder />
+        <CartOrder v-if="cart.length" />
     </div>
 </template>
 
@@ -46,7 +47,7 @@ export default {
         CartOrder
     },
     computed: {
-        ...mapGetters(['recommendationsProducts'])
+        ...mapGetters(['recommendationsProducts', 'cart'])
     }
 }
 </script>

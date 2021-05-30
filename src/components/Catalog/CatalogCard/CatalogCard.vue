@@ -83,54 +83,64 @@
 </template>
 
 <script>
-    import {mapGetters, mapActions} from "vuex"
-    import Catalog from "@/components/Catalog/Catalog"
-    import CatalogHeader from "@/components/Catalog/CatalogHeader/CatalogHeader"
-    import CatalogTitle from "@/components/Catalog/CatalogTitle/CatalogTitle"
-    import CatalogMore from "@/components/Catalog/CatalogMore/CatalogMore"
-    import CatalogList from "@/components/Catalog/CatalogList/CatalogList"
-    import CatalogItem from "@/components/Catalog/CatalogList/CatalogItem/CatalogItem"
+import axios from "axios"
+import {mapGetters, mapActions} from "vuex"
+import Catalog from "@/components/Catalog/Catalog"
+import CatalogHeader from "@/components/Catalog/CatalogHeader/CatalogHeader"
+import CatalogTitle from "@/components/Catalog/CatalogTitle/CatalogTitle"
+import CatalogMore from "@/components/Catalog/CatalogMore/CatalogMore"
+import CatalogList from "@/components/Catalog/CatalogList/CatalogList"
+import CatalogItem from "@/components/Catalog/CatalogList/CatalogItem/CatalogItem"
 
 
-    export default {
-        name: "CatalogCard",
-        data: () => ({
-            faq: [
-                'Состав',
-                'Фармакологическое действие',
-                'Показания',
-                'Преминение при беременности и кормлению грудью',
-                'Противопоказания',
-                'Побочные действия',
-                'Взаимодействие',
-                'Способ применения и дозы',
-                'Передозировка',
-                'Описание',
-            ]
-        }),
-        components: {
-            Catalog,
-            CatalogHeader,
-            CatalogTitle,
-            CatalogMore,
-            CatalogList,
-            CatalogItem
+export default {
+    name: "CatalogCard",
+    data: () => ({
+        faq: [
+            'Состав',
+            'Фармакологическое действие',
+            'Показания',
+            'Преминение при беременности и кормлению грудью',
+            'Противопоказания',
+            'Побочные действия',
+            'Взаимодействие',
+            'Способ применения и дозы',
+            'Передозировка',
+            'Описание',
+        ]
+    }),
+    components: {
+        Catalog,
+        CatalogHeader,
+        CatalogTitle,
+        CatalogMore,
+        CatalogList,
+        CatalogItem
+    },
+    computed: {
+        ...mapGetters(['isOpenCatalogCard', 'recommendationsProducts']),
+        url() {
+            return process.env.VUE_APP_URL
         },
-        computed: {
-            ...mapGetters(['isOpenCatalogCard', 'recommendationsProducts']),
-            url() {
-                return process.env.VUE_APP_URL
-            },
-            product() {
-                return this.isOpenCatalogCard
-            }
-        },
-        methods: {
-            ...mapActions(['closeCatalogCard'])
+        product() {
+            return this.isOpenCatalogCard
         }
+    },
+    methods: {
+        ...mapActions(['closeCatalogCard']),
+        fetchExpertsInfo() {
+            axios.get(`${process.env.VUE_APP_API}/experts/${this.product.substance_id}`)
+            .then(res => {
+                console.log(res.data);
+            })
+        }
+    },
+    created() {
+        this.fetchExpertsInfo()
     }
+}
 </script>
 
 <style lang="scss">
-    @import "CatalogCard";
+@import "CatalogCard";
 </style>
