@@ -25,7 +25,7 @@
             <span>К оплате</span>
             <span>{{ totalPrice }} ₽</span>
         </div>
-        <button class="CartOrder--btn">Заказать</button>
+        <router-link :to="{ name: 'CartDone' }" class="CartOrder--btn">Заказать</router-link>
     </div>
 </template>
 

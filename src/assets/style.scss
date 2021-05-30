@@ -28,3 +28,21 @@ a {
     background: #fff;
   }
 }
+
+.toggle {
+  padding: 4px;
+  width: 49px;
+  height: 26px;
+  background: $buttonBg;
+  border-radius: 99px;
+  &.active .toggle-circle {
+    transform: translateX(23px);
+  }
+  &-circle {
+    width: 18px;
+    height: 18px;
+    background: $purple;
+    border-radius: 50%;
+    transition: .3s;
+  }
+}

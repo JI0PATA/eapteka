@@ -6,6 +6,11 @@
         <div class="catalogCard--close" @click="closeCatalogCard">
             <span>&#x2715</span>
         </div>
+        <button class="catalogCard--buy">
+            <span class="catalogCard--buy-stroke" v-if="product.price.old">{{ product.price.old }}</span>
+            <span class="catalogCard--buy-price">{{ product.price.new }} ₽</span>
+            <img src="@/assets/img/icons/plus-white.svg" alt="Buy" class="catalogCard--buy-add">
+        </button>
         <div class="catalogCard--img-container">
             <img :src="url + '/pics/' + product.image_id + '.webp'" alt="" class="catalogCard--img">
             <div class="catalogCard--pickup">

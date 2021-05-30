@@ -4,3 +4,180 @@
     margin-top: 20px;
   }
 }
+
+.CartDone {
+  &--header {
+    height: 250px;
+    background: $buttonBg;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &-title {
+      color: $purple;
+      font-size: 30px;
+      font-weight: bold;
+    }
+    &-subtitle {
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: bold;
+      margin-top: 7px;
+    }
+  }
+
+  &--card {
+    width: 100%;
+    position: relative;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    background: #fff;
+    margin-top: -15px;
+    padding-top: 45px;
+
+    &-title {
+      font-size: 18px;
+      line-height: 21px;
+      text-align: center;
+      padding: 0 30px;
+      font-weight: bold;
+    }
+    &-subtitle {
+      margin-top: 12px;
+      color: $gray;
+      font-size: 14px;
+      line-height: 18px;
+      padding: 0 30px;
+      text-align: center;
+    }
+    &-timer {
+      margin: 27px 13px;
+      padding: 13px 0;
+      border-top: 1px solid transparentize($gray, .8);
+      border-bottom: 1px solid transparentize($gray, .8);
+      display: flex;
+    }
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      &-container {
+        width: 88px;
+        height: 88px;
+        background: $buttonBg;
+        flex-shrinK: 0;
+        border-radius: 6px;
+      }
+    }
+    &-info {
+      margin-left: 20px;
+      &-title {
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: bold;
+      }
+      &-inCount {
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 12px;
+        color: $gray;
+      }
+      &--days {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 8px;
+        &-item {
+          width: 30px;
+          height: 30px;
+          list-style: none;
+          font-size: 12px;
+          font-weight: bold;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          background: $buttonBg;
+          &:focus, &:active {
+            outline: none !important;
+          }
+          &.active {
+            color: #8168F0;
+            background: #CEC3FC;
+          }
+        }
+      }
+      &--timers {
+        margin-top: 6px;
+        &-item {
+          border-top: 1px solid transparentize($gray, .8);
+          padding-top: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-bottom: 6px;
+          &-time {
+            border: none;
+            font-size: 24px;
+            color: $purple;
+            width: 63px;
+          }
+          &-close {
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            background: none;
+            border: none;
+            font-size: 23px;
+          }
+        }
+        &-add {
+          width: 100%;
+          background: $buttonBg;
+          padding: 10px;
+          font-size: 12px;
+          font-weight: bold;
+          border: transparent;
+          border-radius: 40px;
+        }
+        &-line {
+          width: 100%;
+          height: 1px;
+          background: $buttonBg;
+          margin: 6px 0;
+        }
+      }
+    }
+    &-buttons {
+      margin-top: 27px;
+      display: flex;
+      flex-direction: column;
+      padding: 0 13px;
+    }
+    &-setTimer {
+      padding: 16px;
+      background: $purple;
+      color: #fff;
+      font-size: 18px;
+      border: transparent;
+      border-radius: 42px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    &-cancel {
+      padding: 16px;
+      background: $buttonBg;
+      color: $gray;
+      font-size: 18px;
+      border: transparent;
+      border-radius: 42px;
+      text-align: center;
+    }
+  }
+}

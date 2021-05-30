@@ -1,8 +1,8 @@
 <template>
     <div class="header-container">
-        <button class="header--profile">
+        <router-link :to="{ name: 'Profile' }" class="header--profile">
             <img src="@/assets/img/icons/user.svg" alt="Profile">
-        </button>
+        </router-link>
         <div class="header--search">
             <img src="@/assets/img/icons/search.svg" alt="Search" class="header--search-icon">
             <input type="text" placeholder="Искать в Еаптеке" class="header--search-input">
