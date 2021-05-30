@@ -19,13 +19,15 @@
       width: calc(100% - 60px);
       background: $purple;
       padding: 20px;
-      text-align: center;
       color: #fff;
       left: 50%;
       transform: translateX(-50%);
       border-radius: 42px;
       border: transparent;
       font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &-stroke {
         color: #fff;
         text-decoration: line-through;
@@ -34,10 +36,27 @@
       }
       &-price {
         color: #fff;
+
+        span {
+          color: #fff;
+        }
+      }
+      .catalog-item--add-button {
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;;
+        margin-left: 15px;
+      }
+      .catalog-item--remove-button {
+        margin-right: 15px;
+      }
+      &-inCart {
+        background: #fff;
       }
       &-add {
         width: 20px;
-        margin-left: 15px;
+        flex-shrink: 0;
       }
     }
 

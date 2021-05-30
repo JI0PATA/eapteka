@@ -1,19 +1,29 @@
 <template>
     <div class="catalogCard"
+         :key="product.id"
          v-touch:swipe.bottom="closeCatalogCard"
     >
         <!--        <div class="catalogCard&#45;&#45;overlay"></div>-->
         <div class="catalogCard--close" @click="closeCatalogCard">
             <span>&#x2715</span>
         </div>
-        <button class="catalogCard--buy">
-            <span class="catalogCard--buy-stroke" v-if="product.price.old">{{ product.price.old }}</span>
-            <span class="catalogCard--buy-price">{{ product.price.new }} ₽</span>
-            <img src="@/assets/img/icons/plus-white.svg" alt="Buy" class="catalogCard--buy-add">
-        </button>
+        <div class="catalogCard--buy">
+            <button class="catalog-item--add-button catalog-item--remove-button"
+                    :class="{'catalogCard--buy-inCart': issetInCart(product)}"
+                    v-show="issetInCart(product)"
+                    @click.prevent="removeFromCart(product)">
+                <img src="@/assets/img/icons/minus-purple.svg" alt="Plus" class="catalog-item--add-icon">
+            </button>
+            <span class="catalogCard--buy-stroke" v-if="product.price.old && !issetInCart(product)">{{ product.price.old }}</span>
+            <span class="catalogCard--buy-price"><span v-if="issetInCart(product)">{{ issetInCart(product) }} x </span>{{ product.price.new }} ₽</span>
+            <button class="catalog-item--add-button" :class="{'catalogCard--buy-inCart': issetInCart(product)}" @click.prevent="addToCart(product)">
+                <img src="@/assets/img/icons/plus-white.svg" v-if="!issetInCart(product)" alt="Plus" class="catalogCard--buy-add">
+                <img src="@/assets/img/icons/plus-purple.svg" v-else  alt="Plus" class="catalogCard--buy-add">
+            </button>
+        </div>
         <div class="catalogCard--img-container">
             <img :src="url + '/pics/' + product.image_id + '.webp'" alt="" class="catalogCard--img">
-            <div class="catalogCard--pickup">
+            <div class="catalogCard--pickup" v-if="product.id % 2 === 0">
                 <img src="@/assets/img/icons/truck.svg" alt="Pickup">
                 <span>Только самовывоз</span>
             </div>
@@ -120,7 +130,7 @@ export default {
         CatalogItem
     },
     computed: {
-        ...mapGetters(['isOpenCatalogCard', 'recommendationsProducts']),
+        ...mapGetters(['cart', 'isOpenCatalogCard', 'recommendationsProducts']),
         url() {
             return process.env.VUE_APP_URL
         },
@@ -129,7 +139,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['closeCatalogCard']),
+        ...mapActions(['closeCatalogCard', 'addToCart', 'removeFromCart']),
         async fetchExpertsInfo() {
             await axios.get(`${process.env.VUE_APP_API}/experts/${this.product.substance_id}`)
             .then(res => {
@@ -138,6 +148,11 @@ export default {
             .catch(e => {
                 this.expert = {}
             })
+        },
+        issetInCart(product) {
+            return this.cart.filter(item => {
+                return product.id === item.id
+            }).length
         }
     },
     async created() {

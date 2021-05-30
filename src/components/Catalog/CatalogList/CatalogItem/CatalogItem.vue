@@ -12,7 +12,7 @@
         <h4 class="catalog-item--title" @click.prevent="openCatalogCard(product)">{{ product.name }}</h4>
         <div class="catalog-item--sku">{{ product.sku }} шт.</div>
         <div class="catalog-item--add" :class="{'catalog-item--add-inCart': issetInCart(product)}">
-            <button class="catalog-item--add-button catalog-item--remove-button" @click.prevent="removeFromCart(product)" v-if="issetInCart(product)">
+            <button class="catalog-item--add-button catalog-item--remove-button" @click.prevent="removeFromCart(product)" v-show="issetInCart(product)">
                 <img src="@/assets/img/icons/minus-purple.svg" alt="Plus" class="catalog-item--add-icon">
             </button>
             <span class="catalog-item--price-stroke" v-if="product.price.old && !issetInCart(product)">{{ product.price.old }}</span>
