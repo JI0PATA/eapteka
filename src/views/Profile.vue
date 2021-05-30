@@ -40,7 +40,11 @@
                         </ul>
                         <div class="CartDone--card-info--timers">
                             <div class="CartDone--card-info--timers-item" v-for="(timer, index) in notify.schedule">
-                                <input type="text" v-model="notify.schedule[index]" class="CartDone--card-info--timers-item-time">
+                                <input type="text"
+                                       v-model="notify.schedule[index]"
+                                       v-mask="'##:##'"
+                                       class="CartDone--card-info--timers-item-time"
+                                >
                                 <button class="CartDone--card-info--timers-item-close" @click="removeTimer(notify, timer)">&#x2715</button>
                             </div>
                             <div class="CartDone--card-info--timers-line"></div>

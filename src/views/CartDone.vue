@@ -27,7 +27,10 @@
                     </ul>
                     <div class="CartDone--card-info--timers">
                         <div class="CartDone--card-info--timers-item" :key="index" v-for="(timer, index) in timers">
-                            <input type="text" v-model="timer.value" class="CartDone--card-info--timers-item-time">
+                            <input type="text"
+                                   v-model="timer.value"
+                                   v-mask="'##:##'"
+                                   class="CartDone--card-info--timers-item-time">
                             <button class="CartDone--card-info--timers-item-close" @click="removeTimer(timer)">&#x2715</button>
                         </div>
                         <div class="CartDone--card-info--timers-line"></div>

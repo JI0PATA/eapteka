@@ -7,7 +7,8 @@ import VuePageTransition from 'vue-page-transition'
 import Transitions from 'vue2-transitions'
 import PortalVue from 'portal-vue'
 import axios from 'axios'
-import Vue2TouchEvents from "vue2-touch-events";
+import Vue2TouchEvents from "vue2-touch-events"
+import { VueMaskDirective } from 'v-mask'
 
 Vue.config.productionTip = false
 
@@ -15,6 +16,8 @@ Vue.use(VuePageTransition)
 Vue.use(Transitions)
 Vue.use(PortalVue)
 Vue.use(Vue2TouchEvents)
+
+Vue.directive('mask', VueMaskDirective)
 
 new Vue({
   router,
