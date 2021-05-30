@@ -108,5 +108,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/css/Cart";
+@import "../assets/css/cart";
 </style>
