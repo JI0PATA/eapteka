@@ -9,6 +9,10 @@
   user-select: none;
 }
 
+input {
+  user-select: initial;
+}
+
 #app {
   padding-bottom: 70px;
 }
