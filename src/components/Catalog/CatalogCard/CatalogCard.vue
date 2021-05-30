@@ -54,7 +54,7 @@
                 />
             </CatalogList>
         </Catalog>
-        <div class="catalogCard--comment" v-if="expert != {}">
+        <div class="catalogCard--comment" v-if="JSON.stringify(expert) != JSON.stringify({})">
             <div class="catalogCard--comment-title">{{ expert.title }}</div>
             <div class="catalogCard--comment-subtitle">Оценка эксперта</div>
             <div class="catalogCard--comment-description">{{ expert.text }}</div>
