@@ -25,12 +25,12 @@
             <span>К оплате</span>
             <span>{{ totalPrice }} ₽</span>
         </div>
-        <router-link :to="{ name: 'CartDone' }" class="CartOrder--btn">Заказать</router-link>
+        <button @click="buy" class="CartOrder--btn">Заказать</button>
     </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 
 export default {
     name: "CartOrder",
@@ -41,6 +41,13 @@ export default {
                 acc += Number(product.price.new)
                 return acc
             }, 0)
+        }
+    },
+    methods: {
+        ...mapActions(['addPurchase']),
+        async buy() {
+            await this.addPurchase()
+            this.$router.push({ name: "CartDone" })
         }
     }
 }

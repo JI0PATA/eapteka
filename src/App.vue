@@ -10,7 +10,7 @@
       <CatalogCard v-if="isOpenCatalogCard" />
     </slide-y-down-transition>
     <fade-transition>
-      <CartIndicator />
+      <CartIndicator v-if="$route.name !== 'Cart'" />
     </fade-transition>
   </div>
 </template>

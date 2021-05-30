@@ -55,13 +55,9 @@
             </CatalogList>
         </Catalog>
         <div class="catalogCard--comment">
-            <div class="catalogCard--comment-title">Чем аналоги отличаются от данного вещества?</div>
+            <div class="catalogCard--comment-title">{{ expert.title }}</div>
             <div class="catalogCard--comment-subtitle">Оценка эксперта</div>
-            <div class="catalogCard--comment-description">
-                Аналоги производятся по тем же технологиям, и их качество не
-                отличается. Действующее вещество - Ибупрофен, действует одинаково, и одинаково доходит до организма,
-                отличия могут возникать лишь в капсулах и внешнем виде упаковки.
-            </div>
+            <div class="catalogCard--comment-description">{{ expert.text }}</div>
             <div class="catalogCard--comment-expert-container">
                 <div class="catalogCard--comment-expert-img-container">
                     <img src="@/assets/img/expert.png" class="catalogCard--comment-expert-img" alt="Expert">
@@ -112,7 +108,8 @@ export default {
             'Способ применения и дозы',
             'Передозировка',
             'Описание',
-        ]
+        ],
+        expert: {}
     }),
     components: {
         Catalog,
@@ -133,15 +130,15 @@ export default {
     },
     methods: {
         ...mapActions(['closeCatalogCard']),
-        fetchExpertsInfo() {
-            axios.get(`${process.env.VUE_APP_API}/experts/${this.product.substance_id}`)
+        async fetchExpertsInfo() {
+            await axios.get(`${process.env.VUE_APP_API}/experts/${this.product.substance_id}`)
             .then(res => {
-                console.log(res.data);
+                this.expert = res.data
             })
         }
     },
-    created() {
-        this.fetchExpertsInfo()
+    async created() {
+        await this.fetchExpertsInfo()
     }
 }
 </script>

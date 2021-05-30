@@ -11,7 +11,7 @@
             </CatalogHeader>
             <CatalogList>
                 <CatalogItem
-                        v-for="(product, index) in recommendationsProducts"
+                        v-for="(product, index) in recommendations"
                         :key="index"
                         :product="product"
                 />
@@ -47,7 +47,10 @@ export default {
         CartOrder
     },
     computed: {
-        ...mapGetters(['recommendationsProducts', 'cart'])
+        ...mapGetters(['recommendationsProducts', 'cart']),
+        recommendations() {
+            return this.recommendationsProducts.filter(product => !this.cart.some(item => item.id === product.id))
+        }
     }
 }
 </script>

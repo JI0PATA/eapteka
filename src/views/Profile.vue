@@ -25,12 +25,12 @@
                 </div>
             </div>
             <div class="Profile--notifies">
-                <div class="CartDone--card-timer" v-for="product in distinctProductsInCart">
+                <div class="CartDone--card-timer" v-for="notify in notifiers">
                     <div class="CartDone--card-img-container">
-                        <img :src="url + '/pics/' + product.image_id + '.webp'" alt="" class="CartDone--card-img">
+                        <img :src="url + '/pics/' + notify.product.image_id + '.webp'" alt="" class="CartDone--card-img">
                     </div>
                     <div class="CartDone--card-info">
-                        <div class="CartDone--card-info-title">Аркетал Ромфарм р-р для инфузий и в/мыш. введ. 50мг/мл 2 мл ампулы</div>
+                        <div class="CartDone--card-info-title">{{ notify.product.name }}</div>
                         <div class="CartDone--card-info-inCount">10 шт.</div>
                         <ul class="CartDone--card-info--days">
                             <li class="CartDone--card-info--days-item"
@@ -39,8 +39,8 @@
                                 v-for="day in days">{{ day.name }}</li>
                         </ul>
                         <div class="CartDone--card-info--timers">
-                            <div class="CartDone--card-info--timers-item" v-for="timer in timers">
-                                <input type="text" :value="timer.value" class="CartDone--card-info--timers-item-time">
+                            <div class="CartDone--card-info--timers-item" v-for="timer in notify.schedule">
+                                <input type="text" :value="`${timer.split(':')[0]}:${timer.split(':')[1]}`" class="CartDone--card-info--timers-item-time">
                                 <button class="CartDone--card-info--timers-item-close" @click="removeTimer(timer)">&#x2715</button>
                             </div>
                             <div class="CartDone--card-info--timers-line"></div>
@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import axios from "axios"
 import BackPage from "@/components/BackPage"
 import Search from "@/components/Search/Search"
 import { mapGetters } from "vuex"
@@ -66,14 +67,6 @@ export default {
     },
     computed: {
         ...mapGetters(['cart']),
-        distinctProductsInCart() {
-            return this.cart.reduce((products, product) => {
-                if (!products.some(item => item.id === product.id))
-                    products.push(product)
-
-                return products
-            }, [])
-        },
         url() {
             return process.env.VUE_APP_URL
         },
@@ -110,11 +103,7 @@ export default {
                 checked: false
             },
         ],
-        timers: [
-            {
-                value: "14:00"
-            }
-        ]
+        notifiers: []
     }),
     methods: {
         addNewTimer() {
@@ -124,7 +113,30 @@ export default {
         },
         removeTimer(timer) {
             this.timers.splice(this.timers.indexOf(timer), 1)
+        },
+        async getInfoProduct(id) {
+            let product
+
+            await axios.get(`${process.env.VUE_APP_API}/products/${id}`)
+                .then(res => {
+                    product = res.data
+                })
+
+            return product
         }
+    },
+    async created() {
+        await axios.get(`${process.env.VUE_APP_API}/notifiers`)
+            .then(async res => {
+                const notifiers = []
+                await res.data.forEach(async (notify) => {
+                    notifiers.push({
+                        ...notify,
+                        product: await this.getInfoProduct(notify.product_id)
+                    })
+                })
+                this.notifiers = notifiers
+            })
     }
 }
 </script>

@@ -73,6 +73,7 @@
     }
     &-info {
       margin-left: 20px;
+      flex: 1;
       &-title {
         font-size: 12px;
         line-height: 14px;
@@ -89,6 +90,7 @@
         align-items: center;
         justify-content: space-between;
         margin-top: 8px;
+        width: 100%;
         &-item {
           width: 30px;
           height: 30px;
