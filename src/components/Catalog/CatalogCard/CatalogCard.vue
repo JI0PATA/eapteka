@@ -54,7 +54,7 @@
                 />
             </CatalogList>
         </Catalog>
-        <div class="catalogCard--comment">
+        <div class="catalogCard--comment" v-if="expert != {}">
             <div class="catalogCard--comment-title">{{ expert.title }}</div>
             <div class="catalogCard--comment-subtitle">Оценка эксперта</div>
             <div class="catalogCard--comment-description">{{ expert.text }}</div>
@@ -134,6 +134,9 @@ export default {
             await axios.get(`${process.env.VUE_APP_API}/experts/${this.product.substance_id}`)
             .then(res => {
                 this.expert = res.data
+            })
+            .catch(e => {
+                this.expert = {}
             })
         }
     },
