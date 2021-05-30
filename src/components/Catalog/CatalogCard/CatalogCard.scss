@@ -10,10 +10,11 @@
     //border-top-right-radius: 14px;
     box-shadow: 0 4px 15px #000;
     overflow-y: auto;
-    padding-bottom: 30px;
+    padding-bottom: 90px;
 
     &--buy {
       position: fixed;
+      z-index: 2;
       bottom: 10px;
       width: calc(100% - 60px);
       background: $purple;

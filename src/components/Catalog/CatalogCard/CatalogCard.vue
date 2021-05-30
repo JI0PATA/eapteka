@@ -44,7 +44,7 @@
         <Catalog>
             <CatalogHeader>
                 <CatalogTitle>Аналоги</CatalogTitle>
-                <CatalogMore :link="{name: 'GroupProducts', params: { id: 3 }}">Больше</CatalogMore>
+                <CatalogMore :link="{name: 'GroupProducts', params: { id: 3 }}"><span @click="closeCatalogCard">Больше</span></CatalogMore>
             </CatalogHeader>
             <CatalogList>
                 <CatalogItem
