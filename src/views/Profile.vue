@@ -24,32 +24,32 @@
                     <div class="toggle-circle"></div>
                 </div>
             </div>
-            <div class="Profile--notifies">
-                <div class="CartDone--card-timer" v-for="notify in notifiers">
-                    <div class="CartDone--card-img-container">
-                        <img :src="url + '/pics/' + notify.product.image_id + '.webp'" alt="" class="CartDone--card-img">
-                    </div>
-                    <div class="CartDone--card-info">
-                        <div class="CartDone--card-info-title">{{ notify.product.name }}</div>
-                        <div class="CartDone--card-info-inCount">10 шт.</div>
-                        <ul class="CartDone--card-info--days">
-                            <li class="CartDone--card-info--days-item"
-                                :class="{'active': day.checked}"
-                                @click="day.checked = !day.checked"
-                                v-for="day in days">{{ day.name }}</li>
-                        </ul>
-                        <div class="CartDone--card-info--timers">
-                            <div class="CartDone--card-info--timers-item" v-for="(timer, index) in notify.schedule">
-                                <input type="text"
-                                       v-model="notify.schedule[index]"
-                                       v-mask="'##:##'"
-                                       class="CartDone--card-info--timers-item-time"
-                                >
-                                <button class="CartDone--card-info--timers-item-close" @click="removeTimer(notify, timer)">&#x2715</button>
-                            </div>
-                            <div class="CartDone--card-info--timers-line"></div>
-                            <button class="CartDone--card-info--timers-add" @click="addNewTimer(notify)">Добавить таймер</button>
+        </div>
+        <div class="Profile--notifies">
+            <div class="CartDone--card-timer" v-for="notify in notifiers">
+                <div class="CartDone--card-img-container">
+                    <img :src="url + '/pics/' + notify.product.image_id + '.webp'" alt="" class="CartDone--card-img">
+                </div>
+                <div class="CartDone--card-info">
+                    <div class="CartDone--card-info-title">{{ notify.product.name }}</div>
+                    <div class="CartDone--card-info-inCount">10 шт.</div>
+                    <ul class="CartDone--card-info--days">
+                        <li class="CartDone--card-info--days-item"
+                            :class="{'active': day.checked}"
+                            @click="day.checked = !day.checked"
+                            v-for="day in notify.days">{{ day.name }}</li>
+                    </ul>
+                    <div class="CartDone--card-info--timers">
+                        <div class="CartDone--card-info--timers-item" v-for="(timer, index) in notify.schedule">
+                            <input type="text"
+                                   v-model="notify.schedule[index]"
+                                   v-mask="'##:##'"
+                                   class="CartDone--card-info--timers-item-time"
+                            >
+                            <button class="CartDone--card-info--timers-item-close" @click="removeTimer(notify, timer)">&#x2715</button>
                         </div>
+                        <div class="CartDone--card-info--timers-line"></div>
+                        <button class="CartDone--card-info--timers-add" @click="addNewTimer(notify)">Добавить таймер</button>
                     </div>
                 </div>
             </div>
@@ -77,36 +77,6 @@ export default {
     },
     data: () => ({
         activeToggle: false,
-        days: [
-            {
-                name: "Пн",
-                checked: true
-            },
-            {
-                name: "Вт",
-                checked: true
-            },
-            {
-                name: "Ср",
-                checked: true
-            },
-            {
-                name: "Чт",
-                checked: true
-            },
-            {
-                name: "Пт",
-                checked: true
-            },
-            {
-                name: "Сб",
-                checked: false
-            },
-            {
-                name: "Вс",
-                checked: false
-            },
-        ],
         notifiers: []
     }),
     methods: {
@@ -135,7 +105,37 @@ export default {
                     notifiers.push({
                         ...notify,
                         schedule: notify.schedule.map(item => `${item.split(':')[0]}:${item.split(':')[1]}`),
-                        product: await this.getInfoProduct(notify.product_id)
+                        product: await this.getInfoProduct(notify.product_id),
+                        days: [
+                            {
+                                name: "Пн",
+                                checked: true
+                            },
+                            {
+                                name: "Вт",
+                                checked: true
+                            },
+                            {
+                                name: "Ср",
+                                checked: true
+                            },
+                            {
+                                name: "Чт",
+                                checked: true
+                            },
+                            {
+                                name: "Пт",
+                                checked: true
+                            },
+                            {
+                                name: "Сб",
+                                checked: false
+                            },
+                            {
+                                name: "Вс",
+                                checked: false
+                            },
+                        ],
                     })
                 })
                 this.notifiers = notifiers
