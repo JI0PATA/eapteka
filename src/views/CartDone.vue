@@ -111,19 +111,18 @@ export default {
                 schedule: this.timers.map(timer => `${timer.value}:Europe/Moscow`)
             })
                 .then(res => {
-                    console.log(res.data);
+                    this.$router.push({ name: "Profile" })
                 })
         }
     },
     async created() {
         await axios.get(`${process.env.VUE_APP_API}/purchases`)
-        .then(async res => {
-            await axios.get(`${process.env.VUE_APP_API}/purchase_products?purchase_id=${res.data[0].id}`)
-                .then(res => {
-                    this.products = res.data
-                    this.$router.push({ name: "Profile" })
-                })
-        })
+            .then(async res => {
+                await axios.get(`${process.env.VUE_APP_API}/purchase_products?purchase_id=${res.data[0].id}`)
+                    .then(res => {
+                        this.products = res.data
+                    })
+            })
     }
 }
 </script>

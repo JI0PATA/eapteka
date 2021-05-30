@@ -39,12 +39,12 @@
                                 v-for="day in days">{{ day.name }}</li>
                         </ul>
                         <div class="CartDone--card-info--timers">
-                            <div class="CartDone--card-info--timers-item" v-for="timer in notify.schedule">
-                                <input type="text" :value="`${timer.split(':')[0]}:${timer.split(':')[1]}`" class="CartDone--card-info--timers-item-time">
-                                <button class="CartDone--card-info--timers-item-close" @click="removeTimer(timer)">&#x2715</button>
+                            <div class="CartDone--card-info--timers-item" v-for="(timer, index) in notify.schedule">
+                                <input type="text" v-model="notify.schedule[index]" class="CartDone--card-info--timers-item-time">
+                                <button class="CartDone--card-info--timers-item-close" @click="removeTimer(notify, timer)">&#x2715</button>
                             </div>
                             <div class="CartDone--card-info--timers-line"></div>
-                            <button class="CartDone--card-info--timers-add" @click="addNewTimer">Добавить таймер</button>
+                            <button class="CartDone--card-info--timers-add" @click="addNewTimer(notify)">Добавить таймер</button>
                         </div>
                     </div>
                 </div>
@@ -106,13 +106,11 @@ export default {
         notifiers: []
     }),
     methods: {
-        addNewTimer() {
-            this.timers.push({
-                value: "14:00"
-            })
+        addNewTimer(notify) {
+            notify.schedule.push("")
         },
-        removeTimer(timer) {
-            this.timers.splice(this.timers.indexOf(timer), 1)
+        removeTimer(notify, timer) {
+            notify.schedule.splice(notify.schedule.indexOf(timer), 1)
         },
         async getInfoProduct(id) {
             let product
@@ -132,6 +130,7 @@ export default {
                 await res.data.forEach(async (notify) => {
                     notifiers.push({
                         ...notify,
+                        schedule: notify.schedule.map(item => `${item.split(':')[0]}:${item.split(':')[1]}`),
                         product: await this.getInfoProduct(notify.product_id)
                     })
                 })
